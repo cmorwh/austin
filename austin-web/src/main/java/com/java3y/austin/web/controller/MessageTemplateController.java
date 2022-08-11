@@ -71,9 +71,9 @@ public class MessageTemplateController {
     /**
      * 列表数据
      */
-    @GetMapping("/list")
+    @PostMapping("/list")
     @ApiOperation("/列表页")
-    public BasicResultVO queryList(MessageTemplateParam messageTemplateParam) {
+    public BasicResultVO queryList(@RequestBody MessageTemplateParam messageTemplateParam) {
         List<Map<String, Object>> result = ConvertMap.flatList(messageTemplateService.queryList(messageTemplateParam));
 
         long count = messageTemplateService.count();
