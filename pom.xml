@@ -13,6 +13,7 @@
         <module>austin-handler</module>
         <module>austin-cron</module>
         <module>austin-stream</module>
+        <module>austin-client</module>
     </modules>
 
     <parent>
@@ -88,7 +89,7 @@
             <dependency>
                 <groupId>com.alibaba.boot</groupId>
                 <artifactId>nacos-config-spring-boot-starter</artifactId>
-                <version>0.2.1</version>
+                <version>0.2.12</version>
             </dependency>
 
             <!--apollo-->

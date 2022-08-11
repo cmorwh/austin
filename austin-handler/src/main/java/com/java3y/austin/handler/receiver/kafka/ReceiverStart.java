@@ -1,11 +1,9 @@
 package com.java3y.austin.handler.receiver.kafka;
 
-import com.alibaba.fastjson.JSON;
 import com.java3y.austin.handler.utils.GroupIdMappingUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.common.header.Header;
 import com.java3y.austin.support.constans.MessageQueuePipeline;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.header.Header;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -14,8 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListenerAnnotationBeanPostProcessor;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.listener.ContainerProperties;
-import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -31,7 +27,7 @@ import java.util.Optional;
  * @date 2021/12/4
  */
 @Service
-@ConditionalOnProperty(name = "austin-mq-pipeline", havingValue = MessageQueuePipeline.KAFKA)
+@ConditionalOnProperty(name = "austin.mq.pipeline", havingValue = MessageQueuePipeline.KAFKA)
 @Slf4j
 public class ReceiverStart {
 
@@ -74,8 +70,7 @@ public class ReceiverStart {
             if (element instanceof Method) {
                 String name = ((Method) element).getDeclaringClass().getSimpleName() + "." + ((Method) element).getName();
                 if (RECEIVER_METHOD_NAME.equals(name)) {
-                    attrs.put("groupId", groupIds.get(index));
-                    index++;
+                    attrs.put("groupId", groupIds.get(index++));
                 }
             }
             return attrs;
